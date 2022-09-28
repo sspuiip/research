@@ -29,7 +29,9 @@ $$
 
 where $Z=\{\mathbf{z}_1,\cdots,\mathbf{z}_n\}\in \mathbb{R}^{n\times n}$ is the subspace representation matrix, and each $\mathbf{z}_i$ stands for the data point $\mathbf{x}_i$ in the subspace. $E\in\mathbb{R}^{d\times n}$ is the error matrix.
 
-We know that each data point $\mathbf{x}_j$ can be mapped to a new space through a dictionary  $A=[\mathbf{b}_1,\cdots,\mathbf{b}_k]$, i.e., $\mathbf{x}_j=\sum_{i=1}w_{ji}\mathbf{b}_i$. Self-expression  is just replacing the dictionary with data matrix itself.
+<table><tr><td bgcolor="#f0f0f0">
+
+We know that each data point $\mathbf{x}_j$ can be mapped to a new space through a dictionary  $B=[\mathbf{b}_1,\cdots,\mathbf{b}_k]$, i.e., $\mathbf{x}_j=\sum_{i=1}w_{ji}\mathbf{b}_i$. Self-expression  is just replacing the dictionary with data matrix itself.
 
 
 $$
@@ -41,4 +43,41 @@ so we have the following equation,
 $$
 \mathbf{X}=\mathbf{BW}
 $$
+
+</td></tr><table>
+
+
+In general, we can obtain the value of $\mathbf{Z}$ through solving the following question, i.e.,
+
+$$
+\min\limits_{\mathbf{Z}}\quad \lVert \mathbf{X}-\mathbf{XZ}\rVert_F^2
+$$
+
+Then normalize the symmetric matrix $\mathbf{S} $,
+
+$$
+\mathbf{S}=|\mathbf{Z}|+|\mathbf{Z}^\top |
+$$
+
+Once we have the symmetric matrix, we can use any clustering method for clustering. 
+
+## Multi-view Clustering
+
+### Naive Multi-view Subspace clustering
+
+Naive Multi-view Subspace clustering (NMVSC) first obtains the subspace representation in each view, then, fuses all subspace representation using some rules.
+
+Object function:
+
+$$
+\min\limits_{\mathbf{Z}^{(v)}} f(\mathbf{Z}^{(v)})=\lVert \mathbf{X}^{(v)}-\mathbf{X}^{(v)}\mathbf{Z}^{(v)}\rVert_F^2+\alpha^{(v)}\Omega(\mathbf{Z}^{(v)})
+$$
+
+where,
+
+$$
+\Omega(\mathbf{Z}^{(v)})=\frac12\sum_{i=1}^n\sum_{j=1}^nw_{ij}^{(v)}\lVert \mathbf{z}_i^{(v)}-\mathbf{z}_j^{(v)}\rVert_2^2
+$$
+
+
 
