@@ -21,7 +21,7 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="搜索" href="../search.html" />
-    <link rel="prev" title="机器学习基础" href="../index.html" /> 
+    <link rel="prev" title="目录" href="../index.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -45,6 +45,10 @@
 <li class="toctree-l2"><a class="reference internal" href="#multi-view-data">1.1. Multi-View data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#subspace-clustering">1.2. Subspace clustering</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#standard-subspace-clustering">1.2.1. Standard subspace clustering</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#multi-view-clustering">1.3. Multi-view Clustering</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#naive-multi-view-subspace-clustering">1.3.1. Naive Multi-view Subspace clustering</a></li>
 </ul>
 </li>
 </ul>
@@ -103,7 +107,8 @@
 X=XZ+E
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(Z=\{\mathbf{z}_1,\cdots,\mathbf{z}_n\}\in \mathbb{R}^{n\times n}\)</span> is the subspace representation matrix, and each <span class="math notranslate nohighlight">\(\mathbf{z}_i\)</span> stands for the data point <span class="math notranslate nohighlight">\(\mathbf{x}_i\)</span> in the subspace. <span class="math notranslate nohighlight">\(E\in\mathbb{R}^{d\times n}\)</span> is the error matrix.</p>
-<p>We know that each data point <span class="math notranslate nohighlight">\(\mathbf{x}_j\)</span> can be mapped to a new space through a dictionary  <span class="math notranslate nohighlight">\(A=[\mathbf{b}_1,\cdots,\mathbf{b}_k]\)</span>, i.e., <span class="math notranslate nohighlight">\(\mathbf{x}_j=\sum_{i=1}w_{ji}\mathbf{b}_i\)</span>. Self-expression  is just replacing the dictionary with data matrix itself.</p>
+<table><tr><td bgcolor="#f0f0f0">
+<p>We know that each data point <span class="math notranslate nohighlight">\(\mathbf{x}_j\)</span> can be mapped to a new space through a dictionary  <span class="math notranslate nohighlight">\(B=[\mathbf{b}_1,\cdots,\mathbf{b}_k]\)</span>, i.e., <span class="math notranslate nohighlight">\(\mathbf{x}_j=\sum_{i=1}w_{ji}\mathbf{b}_i\)</span>. Self-expression  is just replacing the dictionary with data matrix itself.</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \mathbf{x}_j=\sum_{i=1}^k W_{ji}\mathbf{b}_i, \quad i.e., \begin{bmatrix}x_{j1}\\x_{j2}\\\vdots\\ x_{jd} \end{bmatrix}=\begin{bmatrix}| &amp;|&amp;\cdots &amp;|\\ \mathbf{b}_1 &amp;\mathbf{b}_2&amp;\cdots &amp;\mathbf{b}_k\\| &amp;|&amp;\cdots &amp;|\\\end{bmatrix}\begin{bmatrix}w_{j1}\\w_{j2}\\\vdots\\ w_{jk} \end{bmatrix}
@@ -113,6 +118,35 @@ X=XZ+E
 \[
 \mathbf{X}=\mathbf{BW}
 \]</div>
+</td></tr><table>
+<p>In general, we can obtain the value of <span class="math notranslate nohighlight">\(\mathbf{Z}\)</span> through solving the following question, i.e.,</p>
+<div class="math notranslate nohighlight">
+\[
+\min\limits_{\mathbf{Z}}\quad \lVert \mathbf{X}-\mathbf{XZ}\rVert_F^2
+\]</div>
+<p>Then normalize the symmetric matrix <span class="math notranslate nohighlight">\(\mathbf{S} \)</span>,</p>
+<div class="math notranslate nohighlight">
+\[
+\mathbf{S}=|\mathbf{Z}|+|\mathbf{Z}^\top |
+\]</div>
+<p>Once we have the symmetric matrix, we can use any clustering method for clustering.</p>
+</section>
+</section>
+<section id="multi-view-clustering">
+<h2><span class="section-number">1.3. </span>Multi-view Clustering<a class="headerlink" href="#multi-view-clustering" title="永久链接至标题"></a></h2>
+<section id="naive-multi-view-subspace-clustering">
+<h3><span class="section-number">1.3.1. </span>Naive Multi-view Subspace clustering<a class="headerlink" href="#naive-multi-view-subspace-clustering" title="永久链接至标题"></a></h3>
+<p>Naive Multi-view Subspace clustering (NMVSC) first obtains the subspace representation in each view, then, fuses all subspace representation using some rules.</p>
+<p>Object function:</p>
+<div class="math notranslate nohighlight">
+\[
+\min\limits_{\mathbf{Z}^{(v)}} f(\mathbf{Z}^{(v)})=\lVert \mathbf{X}^{(v)}-\mathbf{X}^{(v)}\mathbf{Z}^{(v)}\rVert_F^2+\alpha^{(v)}\Omega(\mathbf{Z}^{(v)})
+\]</div>
+<p>where,</p>
+<div class="math notranslate nohighlight">
+\[
+\Omega(\mathbf{Z}^{(v)})=\frac12\sum_{i=1}^n\sum_{j=1}^nw_{ij}^{(v)}\lVert \mathbf{z}_i^{(v)}-\mathbf{z}_j^{(v)}\rVert_2^2
+\]</div>
 </section>
 </section>
 </section>
@@ -121,7 +155,7 @@ X=XZ+E
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../index.html" class="btn btn-neutral float-left" title="机器学习基础" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="../index.html" class="btn btn-neutral float-left" title="目录" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
     </div>
 
   <hr/>
