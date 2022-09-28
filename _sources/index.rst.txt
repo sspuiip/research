@@ -8,22 +8,12 @@
 
 .. toctree::
    :maxdepth: 2
-   :caption: 矩阵分析
+   :caption: Multi-View Clustering
    :numbered:
 
-   matrix/base.md
-   matrix/matrixoper.md
-   matrix/vectorspace.md
-   matrix/matrixdiff.md
+   mvc/mvc_subspace.md
 
-.. toctree::
-   :maxdepth: 2
-   :caption: 最优化
-   :numbered:
 
-   optimization/convex_prob.md
-   optimization/convex_solve.md
-   optimization/convex_neq_solve.md
    
 
 
