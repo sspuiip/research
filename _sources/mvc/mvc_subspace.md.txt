@@ -79,5 +79,7 @@ $$
 \Omega(\mathbf{Z}^{(v)})=\frac12\sum_{i=1}^n\sum_{j=1}^nw_{ij}^{(v)}\lVert \mathbf{z}_i^{(v)}-\mathbf{z}_j^{(v)}\rVert_2^2
 $$
 
+The item
+
 
 
