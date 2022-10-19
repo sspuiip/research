@@ -59,7 +59,7 @@ $$
 \mathbf{S}=|\mathbf{Z}|+|\mathbf{Z}^\top |
 $$
 
-Once we have the symmetric matrix, we can use any clustering method for clustering. 
+Once we have the symmetric matrix, we can use any clustering method for clustering such as spectral clustering. 
 
 ## Multi-view Clustering
 
@@ -67,7 +67,7 @@ Once we have the symmetric matrix, we can use any clustering method for clusteri
 
 Naive Multi-view Subspace clustering (NMVSC) first obtains the subspace representation in each view, then, fuses all subspace representation using some rules.
 
-Object function:
+The object function of view $v$:
 
 $$
 \min\limits_{\mathbf{Z}^{(v)}} f(\mathbf{Z}^{(v)})=\lVert \mathbf{X}^{(v)}-\mathbf{X}^{(v)}\mathbf{Z}^{(v)}\rVert_F^2+\alpha^{(v)}\Omega(\mathbf{Z}^{(v)})
@@ -76,10 +76,15 @@ $$
 where,
 
 $$
-\Omega(\mathbf{Z}^{(v)})=\frac12\sum_{i=1}^n\sum_{j=1}^nw_{ij}^{(v)}\lVert \mathbf{z}_i^{(v)}-\mathbf{z}_j^{(v)}\rVert_2^2
+\Omega(\mathbf{Z}^{(v)})=\frac12\sum_{i=1}^n\sum_{j=1}^nw_{ij}^{(v)}\lVert \mathbf{z}_i^{(v)}-\mathbf{z}_j^{(v)}\rVert_2^2=\mathrm{tr}(\mathbf{Z}^{(v)}\mathbf{L}\mathbf{Z}^{(v)^\top})
 $$
 
-The item
+Therefore, the object function of multi-view clustering becomes the following form,
 
+$$
+\Omega(\mathbf{Z}^{(1)},...,\mathbf{Z}^{(V)})=\sum_{v=1}^V\lVert \mathbf{X}^{(v)}-\mathbf{X}^{(v)}\mathbf{Z}^{(v)}\rVert_F^2 + \sum_{v=1}^V\alpha^{(v)}\mathrm{tr}(\mathbf{Z}^{(v)}\mathbf{L}^{(v)}\mathbf{Z}^{(v)^\top})
+$$
+
+[Paper with code](https://paperswithcode.com/task/multi-view-subspace-clustering#papers-list)
 
 
