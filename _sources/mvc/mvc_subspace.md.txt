@@ -88,4 +88,27 @@ $$
 [Paper with code](https://paperswithcode.com/task/multi-view-subspace-clustering#papers-list)
 
 
-add some thing to remove.
+# Multi-view low-rank sparse subspace clustering
+
+Some notations and abbreviations.
+
+| Notation    | Definition      | 
+|----|-----|
+|  $N$   | Number of data points     |
+|  $k$ |   Number of clusters |
+|  $v$ |   View index |
+|  $n_v$ | Number of views |
+|  $D^{(v)}$ |   Dimension of data points in the view $v$ |
+| $\mathbf{X}^{(v)}\in \mathbb{R}^{D^{(v)}\times N}$ |  Data matrix in the view $v$      |
+| $\mathbf{C}^{(v)}\in \mathbb{R}^{N\times N}$ |  Representation matrix in the view $v$      |
+| $\mathbf{C}^{*}\in \mathbb{R}^{N\times N}$ |  Centroid Representation matrix |
+| $\mathbf{W}\in \mathbb{R}^{N\times N}$ |  Affinity matrix |
+
+
+## Low-Rank Representation
+
+Low-Rank Representation (LRR) try to find a low-rank representation matrix $\mathbf{C}\in\mathbb{R}^{N\times N}$ for input data $\mathbf{X}$, i.e.,
+
+$$
+\min\limits_{\mathbf{C}}\lVert \mathbf{C} \rVert_*\qquad \mathrm{s.t.}\quad \mathbf{X}=\mathbf{XC}
+$$
