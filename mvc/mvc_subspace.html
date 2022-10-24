@@ -206,7 +206,38 @@ X=XZ+E
 \[
 \min\limits_{\mathbf{C}}\lVert \mathbf{C} \rVert_*\qquad \mathrm{s.t.}\quad \mathbf{X}=\mathbf{XC}
 \]</div>
-</section>
+<table><tr><td bgcolor="#f0f0f0">
+<p>Consider data vector <span class="math notranslate nohighlight">\(\mathbf{X}=\{\mathbf{x}_1,..., \mathbf{x}_n\}\)</span>, each of which can be represented by the linear combination of the dictionary <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>,</p>
+<div class="math notranslate nohighlight">
+\[
+\mathbf{X}=\mathbf{AZ}
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\mathbf{Z}\)</span> is the coefficient matrix with each <span class="math notranslate nohighlight">\(\mathbf{z}_i\)</span> being the representation of <span class="math notranslate nohighlight">\(\mathbf{x}_i\)</span>.</p>
+<p>The low-rank representation of data vectors <span class="math notranslate nohighlight">\(\mathbf{X}\)</span> becomes the following problem,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{split}
+\min\limits_{\mathbf{Z}}\quad &amp;\lVert \mathbf{Z} \rVert_* \\
+\mathrm{s.t.}\quad &amp;\mathbf{X=AZ}
+\end{split}
+\end{split}\]</div>
+<p>Here, <span class="math notranslate nohighlight">\(\lVert\cdot\rVert_*\)</span> denotes the nuclear norm of a matrix.</p>
+<p>We assume that <span class="math notranslate nohighlight">\(\mathbf{X}=[\mathbf{X}_1,...,\mathbf{X}_k]\)</span> each of which stands for data vector set with the same true label.</p>
+<p>In order to segment the data into their respective subspaces, we need to compute an affinity matrix that encodes the pairwise affinities between data vectors. So we use the data <span class="math notranslate nohighlight">\(\mathbf{X}\)</span> itself as the dictionary,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{split}
+\min\limits_{\mathbf{Z}}\quad &amp;\lVert \mathbf{Z} \rVert_* \\
+\mathrm{s.t.}\quad &amp;\mathbf{X=XZ}
+\end{split}
+\end{split}\]</div>
+<p>Note that there always exist feasible solutions even when the data sampling is insufficient, because a data vector can be used to represent itself in LRR.</p>
+<p><strong>Theorem</strong> Assume that the data sampling is sufficient such that <span class="math notranslate nohighlight">\(n_i &gt;rank(\mathbf{X}_i)=d_i\)</span>. If the subspaces are independent then there exists an optimal solution <span class="math notranslate nohighlight">\(\mathbf{Z}^*\)</span> that is block-diagonal:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\mathbf{Z}^*=\begin{bmatrix}\mathbf{Z}_1^* &amp; 0 &amp; \cdots &amp; 0\\ 0&amp;\mathbf{Z}_2^*&amp;\cdots&amp;0\\\vdots&amp;\vdots&amp;\ddots&amp;\vdots\\0&amp;0&amp;\cdots&amp;\mathbf{Z}_k^*\end{bmatrix}
+\end{split}\]</div>
+</td></tr><table></section>
 </section>
 
 

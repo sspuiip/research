@@ -112,3 +112,46 @@ Low-Rank Representation (LRR) try to find a low-rank representation matrix $\mat
 $$
 \min\limits_{\mathbf{C}}\lVert \mathbf{C} \rVert_*\qquad \mathrm{s.t.}\quad \mathbf{X}=\mathbf{XC}
 $$
+
+<table><tr><td bgcolor="#f0f0f0">
+
+Consider data vector $\mathbf{X}=\{\mathbf{x}_1,..., \mathbf{x}_n\}$, each of which can be represented by the linear combination of the dictionary $\mathbf{A}$,
+
+$$
+\mathbf{X}=\mathbf{AZ}
+$$
+
+where $\mathbf{Z}$ is the coefficient matrix with each $\mathbf{z}_i$ being the representation of $\mathbf{x}_i$.
+
+The low-rank representation of data vectors $\mathbf{X}$ becomes the following problem,
+
+$$
+\begin{split}
+\min\limits_{\mathbf{Z}}\quad &\lVert \mathbf{Z} \rVert_* \\
+\mathrm{s.t.}\quad &\mathbf{X=AZ}
+\end{split}
+$$
+
+Here, $\lVert\cdot\rVert_*$ denotes the nuclear norm of a matrix.
+
+
+We assume that $\mathbf{X}=[\mathbf{X}_1,...,\mathbf{X}_k]$ each of which stands for data vector set with the same true label.
+
+In order to segment the data into their respective subspaces, we need to compute an affinity matrix that encodes the pairwise affinities between data vectors. So we use the data $\mathbf{X}$ itself as the dictionary,
+
+$$
+\begin{split}
+\min\limits_{\mathbf{Z}}\quad &\lVert \mathbf{Z} \rVert_* \\
+\mathrm{s.t.}\quad &\mathbf{X=XZ}
+\end{split}
+$$
+
+Note that there always exist feasible solutions even when the data sampling is insufficient, because a data vector can be used to represent itself in LRR.
+
+**Theorem** Assume that the data sampling is sufficient such that $n_i >rank(\mathbf{X}_i)=d_i$. If the subspaces are independent then there exists an optimal solution $\mathbf{Z}^*$ that is block-diagonal:
+
+$$
+\mathbf{Z}^*=\begin{bmatrix}\mathbf{Z}_1^* & 0 & \cdots & 0\\ 0&\mathbf{Z}_2^*&\cdots&0\\\vdots&\vdots&\ddots&\vdots\\0&0&\cdots&\mathbf{Z}_k^*\end{bmatrix}
+$$
+
+</td></tr><table>
