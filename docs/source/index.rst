@@ -13,6 +13,13 @@
 
    mvc/mvc_subspace.md
 
+.. toctree::
+   :maxdepth: 2
+   :caption: Research Methods
+   :numbered:
+
+   methods/research_basic.md
+
 
 .. toctree::
    :maxdepth: 2
