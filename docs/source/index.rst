@@ -14,7 +14,12 @@
    mvc/mvc_subspace.md
 
 
-   
+.. toctree::
+   :maxdepth: 2
+   :caption: Fuzzy Systems
+   :numbered:
+
+   fuzzy/fuzzy_base.md
 
 
 
