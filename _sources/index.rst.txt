@@ -21,7 +21,12 @@
    methods/research_basic.md
 
 
-   
+.. toctree::
+   :maxdepth: 2
+   :caption: Fuzzy Systems
+   :numbered:
+
+   fuzzy/fuzzy_base.md
 
 
 

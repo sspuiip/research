@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>1. Fuzzy Sets &mdash; MLBOOK 1.0 文档</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/translations.js"></script>
+        <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="../_static/mathjax/tex-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="prev" title="1. 如何开展研究" href="../methods/research_basic.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            MLBOOK
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <p class="caption" role="heading"><span class="caption-text">Multi-View Clustering</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../mvc/mvc_subspace.html">1. Multi-View Subspace Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mvc/mvc_subspace.html#multi-view-low-rank-sparse-subspace-clustering">2. Multi-view low-rank sparse subspace clustering</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Research Methods</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../methods/research_basic.html">1. 如何开展研究</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Fuzzy Systems</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">1. Fuzzy Sets</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#fuzzy-concepts">1.1. Fuzzy Concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#fuzzy-operations">1.2. Fuzzy Operations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#s-norms">1.2.1. S-Norms</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1">1.2.1.1. 常用S-Norms</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">MLBOOK</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active"><span class="section-number">1. </span>Fuzzy Sets</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/fuzzy/fuzzy_base.md.txt" rel="nofollow"> 查看页面源码</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section class="tex2jax_ignore mathjax_ignore" id="fuzzy-sets">
+<h1><span class="section-number">1. </span>Fuzzy Sets<a class="headerlink" href="#fuzzy-sets" title="此标题的永久链接"></a></h1>
+<section id="fuzzy-concepts">
+<h2><span class="section-number">1.1. </span>Fuzzy Concepts<a class="headerlink" href="#fuzzy-concepts" title="此标题的永久链接"></a></h2>
+<p>  [<strong>定义</strong>]  <strong>模糊集</strong><span class="math notranslate nohighlight">\(A\)</span>以一个隶属函数<span class="math notranslate nohighlight">\(\mu_A(x):U\rightarrow [0,1]\)</span>为规范。</p>
+<p>  表示方式有以下3种：</p>
+<p>  - <span class="math notranslate nohighlight">\(A=\{(x,\mu_A(x))|x\in U\}\)</span></p>
+<p>  - <span class="math notranslate nohighlight">\(A=\int_U \mu_A(x)/x\)</span></p>
+<p>  - <span class="math notranslate nohighlight">\(A=\sum_U \mu_A(x)/x\)</span></p>
+<p>  [<strong>定义</strong>]</p>
+<div class="math notranslate nohighlight">
+\[
+\mathrm{supp}(A)=\{\mu_A(x)&gt;0|x\in U\}
+\]</div>
+<p>  [<strong>定义</strong>]</p>
+<div class="math notranslate nohighlight">
+\[
+\mathrm{height}(A)=\max\limits_{x\in U} \mu_A(x)
+\]</div>
+<p>  [<strong>定义</strong>] <strong>交叉点</strong></p>
+<div class="math notranslate nohighlight">
+\[
+\mathrm{crossover}(A)=\{\mu_A(x)=0.5|x\in U\}
+\]</div>
+<p>  [<strong>定义</strong>] <span class="math notranslate nohighlight">\(\alpha-cut\)</span></p>
+<div class="math notranslate nohighlight">
+\[
+A_\alpha = \{\mu_A(x)\ge \alpha|x\in U\}
+\]</div>
+<p>  [<strong>性质</strong>] 若<span class="math notranslate nohighlight">\(A\)</span>为凸集，则有</p>
+<div class="math notranslate nohighlight">
+\[
+\mu_A(\lambda x_1 + (1-\lambda)x_2)\ge \min (\mu_A(x_1),\mu_A(x_2))
+\]</div>
+</section>
+<section id="fuzzy-operations">
+<h2><span class="section-number">1.2. </span>Fuzzy Operations<a class="headerlink" href="#fuzzy-operations" title="此标题的永久链接"></a></h2>
+<p>  [<strong>相等运算</strong>]</p>
+<div class="math notranslate nohighlight">
+\[
+A=B \Longleftrightarrow \mu_A(x)=\mu_B(x) |x \in U
+\]</div>
+<p>  [<strong>包含运算</strong>]</p>
+<div class="math notranslate nohighlight">
+\[
+A\subseteq B \Longleftrightarrow \mu_A(x)\le\mu_B(x) |x \in U
+\]</div>
+<p>  [<strong>补集运算</strong>]</p>
+<div class="math notranslate nohighlight">
+\[
+\bar{A} \Longleftrightarrow \mu_{\bar{A}}(x)=1-\mu_A(x) |x \in U
+\]</div>
+<p>  [<strong>并集运算</strong>]为s-norm特例</p>
+<div class="math notranslate nohighlight">
+\[
+A\cup B \Longleftrightarrow \mu_{A\cup B}(x)=\max(\mu_A(x),\mu_B(x)) |x \in U
+\]</div>
+<p>  [<strong>交集运算</strong>]为t-norm特例</p>
+<div class="math notranslate nohighlight">
+\[
+A\cap B \Longleftrightarrow \mu_{A\cap B}(x)=\min(\mu_A(x),\mu_B(x)) |x \in U
+\]</div>
+<section id="s-norms">
+<h3><span class="section-number">1.2.1. </span>S-Norms<a class="headerlink" href="#s-norms" title="此标题的永久链接"></a></h3>
+<p>  [<strong>定义</strong>]: 若二元运算<span class="math notranslate nohighlight">\(s:[0,1]\times [0,1]\rightarrow [0,1]\)</span>满足以下条件，则称其为<strong>S-Norm</strong>(例：max)：</p>
+<p>  1. <span class="math notranslate nohighlight">\(s(1,1)=1, s(0,a)=s(a,0)=a\)</span></p>
+<p>  2. <span class="math notranslate nohighlight">\(s(a,b)=s(b,a)\)</span></p>
+<p>  3. if <span class="math notranslate nohighlight">\(a\le a',b\le b'\)</span>, then <span class="math notranslate nohighlight">\(s(a,b)\le s(a',b')\)</span></p>
+<p>  4. <span class="math notranslate nohighlight">\(s[s(a,b),c]=s[a,s(b,c)]\)</span></p>
+<p>  [<strong>定义</strong>]: 若给定s-norm <span class="math notranslate nohighlight">\(s\)</span>以及模糊集<span class="math notranslate nohighlight">\(A,B\)</span>，则广义模糊并集为，</p>
+<div class="math notranslate nohighlight">
+\[
+\mu_{A\cup B}(x)=s(\mu_A(x),\mu_B(x))
+\]</div>
+<p>  [<strong>例</strong>]: <span class="math notranslate nohighlight">\(\mu_{A \cup B}(x)=\max(\mu_A(x),\mu_B(x))\)</span>。</p>
+<section id="id1">
+<h4><span class="section-number">1.2.1.1. </span>常用S-Norms<a class="headerlink" href="#id1" title="此标题的永久链接"></a></h4>
+<ul class="simple">
+<li><p>Dombi</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+s_\lambda(a,b)=\frac{1}{1+\left[(1/a-1)^{-\lambda} +(1/b-1)^{-\lambda}\right]^{-1/\lambda}},\quad \lambda\in(0,\infty)
+\]</div>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">N</span><span class="p">=</span><span class="mi">100</span>
+<span class="n">m</span><span class="p">=</span><span class="mi">2</span>
+<span class="n">a</span><span class="p">=</span><span class="nb">linspace</span><span class="p">(</span><span class="mf">0.01</span><span class="p">,</span><span class="mf">0.99</span><span class="p">,</span><span class="n">N</span><span class="p">)</span>
+<span class="n">b</span><span class="p">=</span><span class="nb">linspace</span><span class="p">(</span><span class="mf">0.01</span><span class="p">,</span><span class="mf">0.99</span><span class="p">,</span><span class="n">N</span><span class="p">)</span>
+<span class="n">A</span><span class="p">=((</span><span class="mi">1</span><span class="o">./</span><span class="n">a</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">.^</span><span class="p">(</span><span class="o">-</span><span class="n">m</span><span class="p">)</span>
+<span class="n">B</span><span class="p">=((</span><span class="mi">1</span><span class="o">./</span><span class="n">b</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">.^</span><span class="p">(</span><span class="o">-</span><span class="n">m</span><span class="p">)</span>
+<span class="p">[</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">]=</span><span class="nb">meshgrid</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">)</span>
+<span class="n">s</span><span class="p">=</span><span class="mi">1</span><span class="o">+</span><span class="p">(</span><span class="n">A</span><span class="o">+</span><span class="n">B</span><span class="p">)</span><span class="o">.^</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="n">m</span><span class="p">)</span>
+<span class="n">s</span><span class="p">=</span><span class="mi">1</span><span class="o">./</span><span class="n">s</span>
+<span class="nb">surf</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">s</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Dubois</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+    s_\alpha (a,b)=\frac{a+b-ab-\min(a,b,1-\alpha)}{\max(1-a,1-b,\alpha)},\quad \alpha\in(0,1)
+ \]</div>
+<ul class="simple">
+<li><p>Yager</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+s_\omega(a,b)=\min(1,(a^\omega+b^\omega)^{1/\omega}),\quad \omega\in(0,\infty)
+ \]</div>
+<ul class="simple">
+<li><p>Drastic sum: (上界)</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+s_{ds}(a,b)=\left\{\begin{array}{ll}a,&amp;  b=0,\\ b,&amp; a=0,\\ 1,&amp; \mathrm{otherwise.}\\ \end{array} \right.
+ \end{split}\]</div>
+<ul class="simple">
+<li><p>Einstein sum:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+s_{es}(a,b)=\frac{a+b}{1+ab}
+ \]</div>
+<ul class="simple">
+<li><p>Algebratic sum:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+s_{as}(a,b)=a+b-ab.
+ \]</div>
+<ul class="simple">
+<li><p>Maximum: (下界)</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+s_m(a,b)=\max(a,b)
+ \]</div>
+<p>  [<strong>定理</strong>]: s-norm的上、下界如下，</p>
+<div class="math notranslate nohighlight">
+\[
+\max(a,b)\le s(a,b)\le s_{ds}(a,b)
+ \]</div>
+<p>  [<strong>定理</strong>]:</p>
+<div class="math notranslate nohighlight">
+\[
+\lim_{\lambda\rightarrow \infty}s_\lambda(a,b)=\max{a,b},\quad \lim_{\lambda\rightarrow 0}s_\lambda(a,b)=s_{ds}(a,b)
+ \]</div>
+</section>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
+        <a href="../methods/research_basic.html" class="btn btn-neutral float-left" title="1. 如何开展研究" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2022, SSPUIIP.</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
