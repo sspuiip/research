@@ -12,6 +12,7 @@
    :numbered:
 
    mvc/mvc_subspace.md
+   mvc/mvc_co_training.md
 
 .. toctree::
    :maxdepth: 2
