@@ -30,13 +30,13 @@ jobs:
             ${{ runner.os }}-pip-
             ${{ runner.os }}-
 
-      - name: 👷‍ Install Dot and pandoc
-        run: |
-          conda install -c conda-forge pandoc
-          conda install -c conda-forge ipython
-          pip install sphinxcontrib-websupport
-          sudo apt update
-          sudo apt install -y graphviz
+      # - name: 👷‍ Install Dot and pandoc
+      #   run: |
+      #     conda install -c conda-forge pandoc
+      #     conda install -c conda-forge ipython
+      #     pip install sphinxcontrib-websupport
+      #     sudo apt update
+      #     sudo apt install -y graphviz
 
       - name: 👷‍ Install dependencies
         shell: bash
