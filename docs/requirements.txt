@@ -3,5 +3,6 @@ furo
 piccolo-theme
 sphinx_rtd_theme
 sphinx-book-theme
+sphinx-adc-theme
 myst-parser
 sphinx-mathjax-offline

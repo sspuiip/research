@@ -8,6 +8,13 @@
 
 .. toctree::
    :maxdepth: 2
+   :caption: Paper Notes
+   :numbered:
+
+   notes/three-way.md
+
+.. toctree::
+   :maxdepth: 2
    :caption: Multi-View Clustering
    :numbered:
 
@@ -28,8 +35,6 @@
    :numbered:
 
    fuzzy/fuzzy_base.md
-
-
 
 
 

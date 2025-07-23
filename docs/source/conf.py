@@ -13,8 +13,8 @@
 # import os
 # import sys
 # sys.path.insert(0, os.path.abspath('.'))
-
-
+# import sphinx_readable_theme
+# import sphinx_adc_theme
 # -- Project information -----------------------------------------------------
 
 project = 'Research Basis'
@@ -55,8 +55,15 @@ exclude_patterns = []
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
-#  'alabaster' 'sphinx_rtd_theme' 'sphinx_book_theme' 'furo' 'piccolo_theme'
-html_theme = 'sphinx_book_theme'
+#   'readable' 'alabaster' 'sphinx_rtd_theme' 'sphinx_book_theme' 'furo' 'piccolo_theme'
+
+html_theme = 'nature'
+
+#html_theme = 'readable'
+#html_theme_path = [sphinx_readable_theme.get_html_theme_path()]
+
+#html_theme = 'sphinx_adc_theme'
+#html_theme_path = [sphinx_adc_theme.get_html_theme_path()]
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
@@ -71,6 +78,19 @@ html_static_path = ['_static']
 
 # -- Extension configuration -------------------------------------------------
 myst_enable_extensions = [
-    "amsmath",
-    "dollarmath"
+     "amsmath",
+    "attrs_inline",
+    "attrs_block",
+    "colon_fence",
+    "deflist",
+    "dollarmath",
+    "fieldlist",
+    "html_admonition",
+    "html_image",
+    "linkify",
+    "replacements",
+    "smartquotes",
+    "strikethrough",
+    "substitution",
+    "tasklist",
 ]
