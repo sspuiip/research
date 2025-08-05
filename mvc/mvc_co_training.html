@@ -1,459 +1,204 @@
-
 <!DOCTYPE html>
 
-
-<html lang="zh-CN" data-content_root="../" >
-
+<html lang="zh-CN" data-content_root="../">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>3. Notes On Multi-View Clustering With Co-Training &#8212; Research Basis 1.0 文档</title>
-  
-  
-  
-  <script data-cfasync="false">
-    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
-  </script>
-  
-  <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-
-  
-  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
-
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
-  
-  <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
-
-    <script src="../_static/documentation_options.js?v=c893ba89"></script>
+    <link rel="stylesheet" type="text/css" href="../_static/nature.css?v=279e0f84" />
+    <script src="../_static/documentation_options.js?v=f115507d"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script src="../_static/translations.js?v=beaddf03"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'mvc/mvc_co_training';</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="../_static/mathjax/tex-chtml.js"></script>
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="搜索" href="../search.html" />
     <link rel="next" title="1. 如何开展研究" href="../methods/research_basic.html" />
-    <link rel="prev" title="1. Multi-View Subspace Clustering" href="mvc_subspace.html" />
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="zh-CN"/>
-  </head>
-  
-  
-  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+    <link rel="prev" title="1. Multi-View Subspace Clustering" href="mvc_subspace.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>导航</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="总索引"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="../methods/research_basic.html" title="1. 如何开展研究"
+             accesskey="N">下一页</a> |</li>
+        <li class="right" >
+          <a href="mvc_subspace.html" title="1. Multi-View Subspace Clustering"
+             accesskey="P">上一页</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Research Basis 1.0 文档</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><span class="section-number">3. </span>Notes On Multi-View Clustering With Co-Training</a></li> 
+      </ul>
+    </div>  
 
-  
-  
-  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
-  
-  <div id="pst-scroll-pixel-helper"></div>
-  
-  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
-    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
-
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
-<form class="bd-search d-flex align-items-center"
-      action="../search.html"
-      method="get">
-  <i class="fa-solid fa-magnifying-glass"></i>
-  <input type="search"
-         class="form-control"
-         name="q"
-         id="search-input"
-         placeholder="Search..."
-         aria-label="Search..."
-         autocomplete="off"
-         autocorrect="off"
-         autocapitalize="off"
-         spellcheck="false"/>
-  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
-
-  <div class="pst-async-banner-revealer d-none">
-  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
-</div>
-
-  
-    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
-    </header>
-  
-
-  <div class="bd-container">
-    <div class="bd-container__inner bd-page-width">
-      
-      
-      
-      <div class="bd-sidebar-primary bd-sidebar">
-        
-
-  
-  <div class="sidebar-header-items sidebar-primary__section">
-    
-    
-    
-    
-  </div>
-  
-    <div class="sidebar-primary-items__start sidebar-primary__section">
-        <div class="sidebar-primary-item">
-
-  
-    
-  
-
-<a class="navbar-brand logo" href="../index.html">
-  
-  
-  
-  
-  
-  
-    <p class="title logo__title">Research Basis 1.0 文档</p>
-  
-</a></div>
-        <div class="sidebar-primary-item">
-
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="搜索" aria-label="搜索" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">搜索</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script></div>
-        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item navbar-nav active">
-        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Multi-View Clustering</span></p>
-<ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="mvc_subspace.html">1. Multi-View Subspace Clustering</a></li>
-
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">3. Notes On Multi-View Clustering With Co-Training</a></li>
-</ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Research Methods</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../methods/research_basic.html">1. 如何开展研究</a></li>
-</ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Fuzzy Systems</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../fuzzy/fuzzy_base.html">1. Fuzzy Sets</a></li>
-</ul>
-
-    </div>
-</nav></div>
-    </div>
-  
-  
-  <div class="sidebar-primary-items__end sidebar-primary__section">
-  </div>
-  
-  <div id="rtd-footer-container"></div>
-
-
-      </div>
-      
-      <main id="main-content" class="bd-main" role="main">
-        
-        
-
-<div class="sbt-scroll-pixel-helper"></div>
-
-          <div class="bd-content">
-            <div class="bd-article-container">
-              
-              <div class="bd-header-article d-print-none">
-<div class="header-article-items header-article__inner">
-  
-    <div class="header-article-items__start">
-      
-        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <span class="fa-solid fa-bars"></span>
-</button></div>
-      
-    </div>
-  
-  
-    <div class="header-article-items__end">
-      
-        <div class="header-article-item">
-
-<div class="article-header-buttons">
-
-
-
-
-
-<div class="dropdown dropdown-download-buttons">
-  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="下载此页面">
-    <i class="fas fa-download"></i>
-  </button>
-  <ul class="dropdown-menu">
-      
-      
-      
-      <li><a href="../_sources/mvc/mvc_co_training.md" target="_blank"
-   class="btn btn-sm btn-download-source-button dropdown-item"
-   title="下载源文件"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="btn__text-container">.md</span>
-</a>
-</li>
-      
-      
-      
-      
-      <li>
-<button onclick="window.print()"
-  class="btn btn-sm btn-download-pdf-button dropdown-item"
-  title="列印成 PDF"
-  data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
-<span class="btn__text-container">.pdf</span>
-</button>
-</li>
-      
-  </ul>
-</div>
-
-
-
-
-<button onclick="toggleFullScreen()"
-  class="btn btn-sm btn-fullscreen-button"
-  title="全屏模式"
-  data-bs-placement="bottom" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fas fa-expand"></i>
-  </span>
-
-</button>
-
-
-
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script>
-
-
-<script>
-document.write(`
-  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="搜索" aria-label="搜索" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-  </button>
-`);
-</script>
-<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="fa-solid fa-list"></span>
-</button>
-</div></div>
-      
-    </div>
-  
-</div>
-</div>
-              
-              
-
-<div id="jb-print-docs-body" class="onlyprint">
-    <h1>Notes On Multi-View Clustering With Co-Training</h1>
-    <!-- Table of contents -->
-    <div id="print-main-content">
-        <div id="jb-print-toc">
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
             
-            <div>
-                <h2> 目录 </h2>
-            </div>
-            <nav aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-subspace-co-training-framework-for-multi-view-clustering">3.1. A subspace co-training framework for multi-view clustering</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#main-idea">3.1.1. Main idea</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comparsion-with-other-papers">3.1.2. Comparsion with other papers</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#my-idea">3.1.3. My idea</a></li>
+  <section class="tex2jax_ignore mathjax_ignore" id="notes-on-multi-view-clustering-with-co-training">
+<h1><span class="section-number">3. </span>Notes On Multi-View Clustering With Co-Training<a class="headerlink" href="#notes-on-multi-view-clustering-with-co-training" title="Link to this heading">¶</a></h1>
+<section id="a-subspace-co-training-framework-for-multi-view-clustering">
+<h2><span class="section-number">3.1. </span>A subspace co-training framework for multi-view clustering<a class="headerlink" href="#a-subspace-co-training-framework-for-multi-view-clustering" title="Link to this heading">¶</a></h2>
+<p>The objective of this papter is to employ co-training algorithms to achieve consensus among divergent perspectives. The core idea is described as following,</p>
+<ul class="simple">
+<li><p>To train an LDA model for view <span class="math notranslate nohighlight">\(a\)</span> using label information from another view <span class="math notranslate nohighlight">\(b\)</span>, and perform transformation by the projection matrix obtained by the LDA model. The method uses <span class="math notranslate nohighlight">\(X^{(v)}\)</span> and <span class="math notranslate nohighlight">\(H^{(3-v)}\)</span> (label from another view) to train LDA projection matrix <span class="math notranslate nohighlight">\(P^{(v)}\)</span>, and project all samples into a new representation guided by the matrix  <span class="math notranslate nohighlight">\(P^{(v)}\)</span>.</p></li>
+<li><p>Updating a new assignment for each item in the view <span class="math notranslate nohighlight">\(a\)</span>. to perform k-means clustering on projected samples with initialized k-centers <span class="math notranslate nohighlight">\(S^{(v)}\)</span>. then update label information <span class="math notranslate nohighlight">\(H^{(v)}\)</span> and new k-centers <span class="math notranslate nohighlight">\(S^{(v)}\)</span>.</p></li>
+</ul>
+<p>Firstly, the authors defined a criterion for evaluating the degree of consensus, i.e.,</p>
+<div class="math notranslate nohighlight">
+\[
+\textrm{CAI}(\pmb{H}^{(1)},\pmb{H}^{(2)})\triangleq \frac1n \sum_{i=1}^n \delta (h_i^{(1)},\textrm{map}(h_i^{(2)}))
+\]</div>
+<p>Then, the mothod seeks two LDA projections <span class="math notranslate nohighlight">\(\pmb{P}^{(1)},\pmb{P}^{(2)}\)</span> such that the CAI resulting from k-means on both subspaces is maximized.</p>
+<div class="math notranslate nohighlight">
+\[
+\arg\max\limits_{\pmb{P}^{(1)},\pmb{P}^{(2)}} \textrm{CAI}(\pmb{H}^{(1)},\pmb{H}^{(2)})
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\pmb{H}^{(v)}\)</span> are further dependent on <span class="math notranslate nohighlight">\(\pmb{P}^{(v)}\)</span>,</p>
+<div class="math notranslate nohighlight">
+\[
+H^{(v)}=\arg\min\limits_{H^{(v)}}\sum_{k=1}^K\sum_{h_i^{(v)}=k}\Vert P^{(v)\top}\pmb{x}_i - P^{(v)\top}\pmb{m}_k\Vert^2;\quad (v=1,2)
+\]</div>
+<p>The training process of CoKmLDA is showed in the figure below. By incorporating the Co-training strategy, the algorithm use cluster indicators generated by <span class="math notranslate nohighlight">\(k\)</span>-means in one view as supervised label information to train LDA projections in the other view, and vise versa.</p>
+<p><img alt="CoKmLDA" src="../_images/CoKmLDA.png" /></p>
+<section id="questions">
+<h3><span class="section-number">3.1.1. </span>Questions<a class="headerlink" href="#questions" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>advantages</strong>. not complicated.</p></li>
+<li><p><strong>defects</strong>.</p>
+<ul>
+<li><p>It is difficult for the algorithm to reach a balance between all views when the number of views exceeds three. The convergence of the algorithm is not guaranteed.</p></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">3.2. References</a></li>
 </ul>
-            </nav>
-        </div>
-    </div>
-</div>
-
-              
-                
-<div id="searchbox"></div>
-                <article class="bd-article">
-                  
-  <section class="tex2jax_ignore mathjax_ignore" id="notes-on-multi-view-clustering-with-co-training">
-<h1><span class="section-number">3. </span>Notes On Multi-View Clustering With Co-Training<a class="headerlink" href="#notes-on-multi-view-clustering-with-co-training" title="Link to this heading">#</a></h1>
-<section id="a-subspace-co-training-framework-for-multi-view-clustering">
-<h2><span class="section-number">3.1. </span>A subspace co-training framework for multi-view clustering<a class="headerlink" href="#a-subspace-co-training-framework-for-multi-view-clustering" title="Link to this heading">#</a></h2>
-<section id="main-idea">
-<h3><span class="section-number">3.1.1. </span>Main idea<a class="headerlink" href="#main-idea" title="Link to this heading">#</a></h3>
 </section>
-<section id="comparsion-with-other-papers">
-<h3><span class="section-number">3.1.2. </span>Comparsion with other papers<a class="headerlink" href="#comparsion-with-other-papers" title="Link to this heading">#</a></h3>
-</section>
-<section id="my-idea">
-<h3><span class="section-number">3.1.3. </span>My idea<a class="headerlink" href="#my-idea" title="Link to this heading">#</a></h3>
-</section>
+<section id="future-work">
+<h3><span class="section-number">3.1.2. </span>Future Work<a class="headerlink" href="#future-work" title="Link to this heading">¶</a></h3>
 </section>
 <section id="references">
-<h2><span class="section-number">3.2. </span>References<a class="headerlink" href="#references" title="Link to this heading">#</a></h2>
+<h3><span class="section-number">3.1.3. </span>References<a class="headerlink" href="#references" title="Link to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>[Zhao2014] Xuran Zhao, Nicholas Evans, Jean-Luc Dugelay. <em>A subspace co-training framework for multi-view clustering</em>. <strong>Pattern Recognition Letters</strong>, 2014.</p></li>
 </ul>
 </section>
 </section>
+<section id="multi-view-sparse-co-clustering-via-proximal-alternating-linearized-minimization">
+<h2><span class="section-number">3.2. </span>Multi-view sparse co-clustering via proximal alternating linearized minimization<a class="headerlink" href="#multi-view-sparse-co-clustering-via-proximal-alternating-linearized-minimization" title="Link to this heading">¶</a></h2>
+<p>By taking advantage of the low-rank approximation, Sun et al.  proposed a sparse co-clustering approach in which multiple data matrices are simultaneously decomposed into products of sparse row and column vectors. The method performs biclustering in each view to identify row clusters and column clusters with the constraint  that row clusters should be the same across views.</p>
+<p>The core idea of sparse co-clustering is described as follow,</p>
+<p><img alt="Sparse_co_clustering" src="../_images/sparse_co_clustering.png" /></p>
+<p>The optimization problem of the paper is defined as,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+  \begin{split}
+     \min\limits_{\pmb{\omega},\pmb{u}^{k},\pmb{v}^k}&amp;\sum_{k=1}^{m}\left\Vert \pmb{X}^k-\textrm{diag}(\pmb{\omega})\pmb{u}^{k}\pmb{v}^{k\top}\right\Vert_F^2\\
+     \textrm{s.t.}\quad &amp;\Vert\pmb{\omega}\Vert_0\le s_{\omega},\Vert\pmb{v}^k\Vert_0\le s_{v^k}
+  \end{split}
+\end{split}\]</div>
+<p>The authors utilize proximal alternating linearized minimization (PALM) to solve this problem. The main idea of PALM is to, for each block of variables, perform one gradient step on the smooth part, while a proximal step is taken on the non-smooth part. PALM only requires componentwise Lipchitz continuity, i.e., Lipchitz continuous w.r.t. a block of variables when others are fixed.</p>
+<section id="id1">
+<h3><span class="section-number">3.2.1. </span>Questions<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h3>
+<p>Is there any overlap between BiClusters? If we want the BiCluster algorithm to obtain overlapping BiClusters, it is easy to obtain overlapping clusters by performing SSVD and replacing the data matrix <span class="math notranslate nohighlight">\(X\)</span> with a new version <span class="math notranslate nohighlight">\(X-\sigma\pmb{u}\pmb{v}^\top\)</span>. Otherwise, to get non-overlapping clusters, the algorithm should use another version <span class="math notranslate nohighlight">\(X\)</span> that removes the rows of clustered subjects in the last round. The process of generating <span class="math notranslate nohighlight">\(K\)</span> BiClusters is discribed in RoBIC\cite{Asgarian2007} as follow,</p>
+<p><img alt="RoBIC algorithm" src="../_images/robic_bicluster.png" /></p>
+<ul class="simple">
+<li><p>In comparison to SSVD\cite{Lee2010}, the most significant difference is the solution strategy, which uses PALM to iteratively solve the optimization problem (old problem new method).</p></li>
+<li><p>However, some problems related to BiClusters are still unresolved, such as “will the algorithm output how many biclusters? if the parameter <span class="math notranslate nohighlight">\(k\)</span> exceeds the rank of data matrix”.</p></li>
+<li><p>Besides, there maybe exists some relations with recommender system, such as group recommendation with biClusters?</p></li>
+</ul>
+</section>
+<section id="id2">
+<h3><span class="section-number">3.2.2. </span>Future work<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>The global and local structural information could be used to regularize the other clustering algorithms, such as fuzzy c-means, spectral clustering et al.</p></li>
+<li><p>A work could be done for&quot;\textit{Projected fuzzy c-means with global and local structural information preserving}&quot;. However, the title above should be edited to have less overlap in words.</p></li>
+</ul>
+</section>
+</section>
+</section>
 
 
-                </article>
-              
-
-              
-              
-              
-              
-                <footer class="prev-next-footer d-print-none">
-                  
-<div class="prev-next-area">
-    <a class="left-prev"
-       href="mvc_subspace.html"
-       title="previous page">
-      <i class="fa-solid fa-angle-left"></i>
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">上一页</p>
-        <p class="prev-next-title"><span class="section-number">1. </span>Multi-View Subspace Clustering</p>
+            <div class="clearer"></div>
+          </div>
+        </div>
       </div>
-    </a>
-    <a class="right-next"
-       href="../methods/research_basic.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">下一页</p>
-        <p class="prev-next-title"><span class="section-number">1. </span>如何开展研究</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
-    </a>
-</div>
-                </footer>
-              
-            </div>
-            
-            
-              
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-
-  <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> 目录
-  </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-subspace-co-training-framework-for-multi-view-clustering">3.1. A subspace co-training framework for multi-view clustering</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#main-idea">3.1.1. Main idea</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comparsion-with-other-papers">3.1.2. Comparsion with other papers</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#my-idea">3.1.3. My idea</a></li>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../index.html">目录</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">3. Notes On Multi-View Clustering With Co-Training</a><ul>
+<li><a class="reference internal" href="#a-subspace-co-training-framework-for-multi-view-clustering">3.1. A subspace co-training framework for multi-view clustering</a><ul>
+<li><a class="reference internal" href="#questions">3.1.1. Questions</a></li>
+<li><a class="reference internal" href="#future-work">3.1.2. Future Work</a></li>
+<li><a class="reference internal" href="#references">3.1.3. References</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">3.2. References</a></li>
+<li><a class="reference internal" href="#multi-view-sparse-co-clustering-via-proximal-alternating-linearized-minimization">3.2. Multi-view sparse co-clustering via proximal alternating linearized minimization</a><ul>
+<li><a class="reference internal" href="#id1">3.2.1. Questions</a></li>
+<li><a class="reference internal" href="#id2">3.2.2. Future work</a></li>
 </ul>
-  </nav></div>
-
-</div></div>
-              
-            
-          </div>
-          <footer class="bd-footer-content">
-            
-<div class="bd-footer-content__inner container">
-  
-  <div class="footer-item">
-    
-<p class="component-author">
-作者： SSPUIIP
-</p>
+</li>
+</ul>
+</li>
+</ul>
 
   </div>
-  
-  <div class="footer-item">
-    
-
-  <p class="copyright">
-    
-      © Copyright 2022, SSPUIIP.
-      <br/>
-    
-  </p>
-
+  <div>
+    <h4>上一主题</h4>
+    <p class="topless"><a href="mvc_subspace.html"
+                          title="上一章"><span class="section-number">1. </span>Multi-View Subspace Clustering</a></p>
   </div>
-  
-  <div class="footer-item">
-    
+  <div>
+    <h4>下一主题</h4>
+    <p class="topless"><a href="../methods/research_basic.html"
+                          title="下一章"><span class="section-number">1. </span>如何开展研究</a></p>
   </div>
-  
-  <div class="footer-item">
-    
-  </div>
-  
-</div>
-          </footer>
-        
-
-      </main>
+  <div role="note" aria-label="source link">
+    <h3>本页</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/mvc/mvc_co_training.md.txt"
+            rel="nofollow">显示源代码</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">快速搜索</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="提交" />
+    </form>
     </div>
-  </div>
-  
-  <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
-
-  <footer class="bd-footer">
-  </footer>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>导航</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="总索引"
+             >索引</a></li>
+        <li class="right" >
+          <a href="../methods/research_basic.html" title="1. 如何开展研究"
+             >下一页</a> |</li>
+        <li class="right" >
+          <a href="mvc_subspace.html" title="1. Multi-View Subspace Clustering"
+             >上一页</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Research Basis 1.0 文档</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><span class="section-number">3. </span>Notes On Multi-View Clustering With Co-Training</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; 版权所有 2022, SSPUIIP.
+      由 <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.1.3创建。
+    </div>
   </body>
 </html>

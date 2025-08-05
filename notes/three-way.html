@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>1. 三支决策论文笔记 &#8212; Research Basis 1.0 文档</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../_static/nature.css?v=279e0f84" />
+    <script src="../_static/documentation_options.js?v=f115507d"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/translations.js?v=beaddf03"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="../_static/mathjax/tex-chtml.js"></script>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="1. Multi-View Subspace Clustering" href="../mvc/mvc_subspace.html" />
+    <link rel="prev" title="目录" href="../index.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>导航</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="总索引"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="../mvc/mvc_subspace.html" title="1. Multi-View Subspace Clustering"
+             accesskey="N">下一页</a> |</li>
+        <li class="right" >
+          <a href="../index.html" title="目录"
+             accesskey="P">上一页</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Research Basis 1.0 文档</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><span class="section-number">1. </span>三支决策论文笔记</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1><span class="section-number">1. </span>三支决策论文笔记<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h1>
+<section id="notes-on-three-way-clustering-foundations-survey-and-challenges">
+<h2><span class="section-number">1.1. </span>Notes on Three-way clustering: Foundations, survey and challenges<a class="headerlink" href="#notes-on-three-way-clustering-foundations-survey-and-challenges" title="Link to this heading">¶</a></h2>
+<p>  该篇论文要是聚焦在三支决策聚类。总结了该领域的研究进展。</p>
+<section id="mian-idea">
+<h3><span class="section-number">1.1.1. </span>Mian Idea<a class="headerlink" href="#mian-idea" title="Link to this heading">¶</a></h3>
+<p>  <strong>三支聚类</strong>. 假设有数据集<span class="math notranslate nohighlight">\(U=\{\pmb{x}_1,...,\pmb{x}_n\}\)</span>，三支聚类指是任意聚类簇<span class="math notranslate nohighlight">\(C_i\)</span>可以表示为核心域<span class="math notranslate nohighlight">\(\textrm{Co}(C_i)\)</span>和边界域<span class="math notranslate nohighlight">\(\textrm{Fr}(C_i)\)</span>，即，<span class="math notranslate nohighlight">\(C_t=\{\textrm{Co}(C_i),\textrm{Fr}(C_t)\}\)</span>，且满足以下条件：</p>
+<ol class="arabic simple">
+<li><p><span class="math notranslate nohighlight">\(\textrm{Co}(C_t)\neq \emptyset, t=1,2,...,k\)</span>,</p></li>
+<li><p><span class="math notranslate nohighlight">\(\textrm{Co}(C_t)\cap \textrm{Fr}(C_t)=\emptyset\)</span>,</p></li>
+<li><p><span class="math notranslate nohighlight">\(\bigcup_{i=1}^k [\textrm{Co}(C_t)] \cup [\textrm{Fr}(C_t)]=U\)</span>.</p></li>
+</ol>
+<p>  对于类簇<span class="math notranslate nohighlight">\(C_i\)</span>，全体样本<span class="math notranslate nohighlight">\(U\)</span>可以分解为<span class="math notranslate nohighlight">\(\textrm{Co}(C_i)\)</span>、<span class="math notranslate nohighlight">\(\textrm{Fr}(C_i)\)</span>以及<span class="math notranslate nohighlight">\(\textrm{Tr}(C_t)=U-\textrm{Co}(C_i)-\textrm{Fr}(C_i)\)</span>三个子集。并且这些子集满足：</p>
+<ol class="arabic simple">
+<li><p><span class="math notranslate nohighlight">\(\textrm{Co}(C_t)\cap \textrm{Fr}(C_t)=\emptyset\)</span>,</p></li>
+<li><p><span class="math notranslate nohighlight">\(\textrm{Co}(C_t)\cap \textrm{Tr}(C_t)=\emptyset\)</span>,</p></li>
+<li><p><span class="math notranslate nohighlight">\(\textrm{Fr}(C_t)\cap \textrm{Tr}(C_t)=\emptyset\)</span>,</p></li>
+<li><p><span class="math notranslate nohighlight">\(\textrm{Tr}(C_t)\cup \textrm{Co}(C_t)\cup \textrm{Fr}(C_t)=U\)</span>.</p></li>
+</ol>
+<ul class="simple">
+<li><p><strong>三支硬聚类</strong></p></li>
+</ul>
+<p>  主要的诉求为所有类簇<span class="math notranslate nohighlight">\(C=\{(\textrm{Co}(C_1),\textrm{Fr}(C_1)),(\textrm{Co}(C_2),\textrm{Fr}(C_2)),...,(\textrm{Co}(C_k),\textrm{Fr}(C_k))\}\)</span>互不相容，即</p>
+<div class="math notranslate nohighlight">
+\[
+\forall i,j,i\neq j,\quad \textrm{Co}(C_i)\cap \textrm{Co}(C_j)=\emptyset,\quad \textrm{Co}(C_i)\cap \textrm{Fr}(C_j)=\emptyset,\quad \textrm{Fr}(C_i)\cap \textrm{Fr}(C_j)=\emptyset
+\]</div>
+<ul class="simple">
+<li><p><strong>三支重叠聚类</strong></p></li>
+</ul>
+<p>  主要的诉求为所有类簇<span class="math notranslate nohighlight">\(C=\{(\textrm{Co}(C_1),\textrm{Fr}(C_1)),(\textrm{Co}(C_2),\textrm{Fr}(C_2)),...,(\textrm{Co}(C_k),\textrm{Fr}(C_k))\}\)</span>满足以下条件之一</p>
+<div class="math notranslate nohighlight">
+\[
+\forall i,j,i\neq j,\quad |\textrm{Co}(C_i)\cap \textrm{Co}(C_j)|\ge 0,\quad |\textrm{Co}(C_i)\cap \textrm{Fr}(C_j)|\ge 0,\quad |\textrm{Fr}(C_i)\cap \textrm{Fr}(C_j)|\ge 0
+\]</div>
+<section id="rough-k-means">
+<h4><span class="section-number">1.1.1.1. </span>Rough k-means<a class="headerlink" href="#rough-k-means" title="Link to this heading">¶</a></h4>
+<p>  Rough k-means (RKM): k-means的修改版，加入了根据类簇上下近似集后修改的类簇的<strong>聚类中心判定规则</strong>：</p>
+<div class="math notranslate nohighlight" id="equation-rkm-cluster-center">
+<span class="eqno">(1)<a class="headerlink" href="#equation-rkm-cluster-center" title="Link to this equation">¶</a></span>\[\begin{split}
+\pmb{v}_i = \left\{ \begin{array}{ll} A_i=\mu(\underline{\textrm{apr}}(C_i)),&amp; \underline{\textrm{apr}}(C_i)\neq\emptyset;\\
+B_i=\mu(\overline{\textrm{apr}}(C_i)-\underline{\textrm{apr}}(C_i)),&amp; \overline{\textrm{apr}}(C_i)-\underline{\textrm{apr}}(C_i)\neq \emptyset;\\
+w_lA_i+w_uB_i,&amp; \textrm{otherwise.}
+\end{array}\right.
+\end{split}\]</div>
+<p>其中，<span class="math notranslate nohighlight">\(\mu(\cdot)\)</span>是集合元素的均值函数。</p>
+<p>  k-means的迭代过程中，<strong>样本归于类簇的规则</strong>为，令</p>
+<div class="math notranslate nohighlight" id="equation-rkm-candidate-centers">
+<span class="eqno">(2)<a class="headerlink" href="#equation-rkm-candidate-centers" title="Link to this equation">¶</a></span>\[
+T=\{j|d(\pmb{v}_j,\pmb{x}_k)-d(\pmb{v}_p,\pmb{x}_k)\le\Delta, (p\neq j)\}
+\]</div>
+<p>其中<span class="math notranslate nohighlight">\(\Delta\)</span>为阈值，<span class="math notranslate nohighlight">\(p=\min\limits_{1\ge j\ge k} d(\pmb{v}_j,\pmb{x}_k)\)</span>为样本<span class="math notranslate nohighlight">\(\pmb{x}_k\)</span>最近的类簇编号。样本类簇关系判定规则如下，</p>
+<ol class="arabic simple">
+<li><p>如果<span class="math notranslate nohighlight">\(T=\emptyset\)</span>，则<span class="math notranslate nohighlight">\(\pmb{x}_k\Rightarrow \underline{\textrm{apr}}(C_p)\)</span>且<span class="math notranslate nohighlight">\(\pmb{x}_k\Rightarrow \overline{\textrm{apr}}(C_p)\)</span>;</p></li>
+<li><p>如果<span class="math notranslate nohighlight">\(T\neq \emptyset\)</span>，<span class="math notranslate nohighlight">\(\pmb{x}_k\Rightarrow \overline{\textrm{apr}}(C_p)\)</span>且<span class="math notranslate nohighlight">\(\pmb{x}_k\Rightarrow \overline{\textrm{apr}}(C_j),\forall j\in T.\)</span></p></li>
+</ol>
+</section>
+<section id="twkm">
+<h4><span class="section-number">1.1.1.2. </span>TWKM<a class="headerlink" href="#twkm" title="Link to this heading">¶</a></h4>
+<figure class="align-default" id="id3">
+<a class="reference internal image-reference" href="../_images/twkm.png"><img alt="twkm" src="../_images/twkm.png" style="width: 400px;" />
+</a>
+<figcaption>
+<p><span class="caption-text">TWKM算法<a class="footnote-reference brackets" href="#wang-twkm" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a></span><a class="headerlink" href="#id3" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
+<p>  该算法首先用RKM得到所有类簇的支持集（即上下近似集的和）以及聚类中心，然后将每个类簇的支持集样本分为两类：</p>
+<ul class="simple">
+<li><p>类型1：样本至少属于2个类簇</p></li>
+<li><p>类型2：样本只属于1个类簇</p></li>
+</ul>
+<p>  对于类型1样本<span class="math notranslate nohighlight">\(v\)</span>，加入类簇<span class="math notranslate nohighlight">\(C_i\)</span>的边缘集<span class="math notranslate nohighlight">\(Fr(C_i)\)</span>，对于类型2样本<span class="math notranslate nohighlight">\(v\)</span>，将样本<span class="math notranslate nohighlight">\(v\)</span>与<span class="math notranslate nohighlight">\(|C_i|\)</span>相乘后加入<span class="math notranslate nohighlight">\(C_i\)</span>的支持集，然后重新计算<span class="math notranslate nohighlight">\(C_i\)</span>的聚类中心。如果样本与聚类中心的距离超过阈值<span class="math notranslate nohighlight">\(\epsilon_2\)</span>则样本加入边缘集<span class="math notranslate nohighlight">\(Fr(C_i)\)</span>，否则加入核心集<span class="math notranslate nohighlight">\(Co(C_i)\)</span>。</p>
+</section>
+</section>
+<section id="comparison-with-other-papers">
+<h3><span class="section-number">1.1.2. </span>Comparison with other papers<a class="headerlink" href="#comparison-with-other-papers" title="Link to this heading">¶</a></h3>
+</section>
+<section id="own-idea">
+<h3><span class="section-number">1.1.3. </span>Own idea<a class="headerlink" href="#own-idea" title="Link to this heading">¶</a></h3>
+<p>问题1： 核心集与边缘集的区分依赖事先给定的阈值。</p>
+</section>
+</section>
+</section>
+<hr class="footnotes docutils" />
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="wang-twkm" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">1</a><span class="fn-bracket">]</span></span>
+<p>Wang, P., Shi, H., Yang, X. and Mi, J. (2019), ‘Three-way k-means: integrating k-means and three-way decision’, International Journal of Machine Learning and Cybernetics 10(10), 2767–2777.</p>
+</aside>
+</aside>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../index.html">目录</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">1. 三支决策论文笔记</a><ul>
+<li><a class="reference internal" href="#notes-on-three-way-clustering-foundations-survey-and-challenges">1.1. Notes on Three-way clustering: Foundations, survey and challenges</a><ul>
+<li><a class="reference internal" href="#mian-idea">1.1.1. Mian Idea</a><ul>
+<li><a class="reference internal" href="#rough-k-means">1.1.1.1. Rough k-means</a></li>
+<li><a class="reference internal" href="#twkm">1.1.1.2. TWKM</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#comparison-with-other-papers">1.1.2. Comparison with other papers</a></li>
+<li><a class="reference internal" href="#own-idea">1.1.3. Own idea</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>上一主题</h4>
+    <p class="topless"><a href="../index.html"
+                          title="上一章">目录</a></p>
+  </div>
+  <div>
+    <h4>下一主题</h4>
+    <p class="topless"><a href="../mvc/mvc_subspace.html"
+                          title="下一章"><span class="section-number">1. </span>Multi-View Subspace Clustering</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>本页</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/notes/three-way.md.txt"
+            rel="nofollow">显示源代码</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">快速搜索</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="提交" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>导航</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="总索引"
+             >索引</a></li>
+        <li class="right" >
+          <a href="../mvc/mvc_subspace.html" title="1. Multi-View Subspace Clustering"
+             >下一页</a> |</li>
+        <li class="right" >
+          <a href="../index.html" title="目录"
+             >上一页</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Research Basis 1.0 文档</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><span class="section-number">1. </span>三支决策论文笔记</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; 版权所有 2022, SSPUIIP.
+      由 <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.1.3创建。
+    </div>
+  </body>
+</html>

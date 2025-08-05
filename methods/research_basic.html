@@ -1,344 +1,51 @@
-
 <!DOCTYPE html>
 
-
-<html lang="zh-CN" data-content_root="../" >
-
+<html lang="zh-CN" data-content_root="../">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>1. 如何开展研究 &#8212; Research Basis 1.0 文档</title>
-  
-  
-  
-  <script data-cfasync="false">
-    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
-  </script>
-  
-  <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-
-  
-  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
-
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
-  
-  <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
-
-    <script src="../_static/documentation_options.js?v=c893ba89"></script>
+    <link rel="stylesheet" type="text/css" href="../_static/nature.css?v=279e0f84" />
+    <script src="../_static/documentation_options.js?v=f115507d"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script src="../_static/translations.js?v=beaddf03"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'methods/research_basic';</script>
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="搜索" href="../search.html" />
     <link rel="next" title="1. Fuzzy Sets" href="../fuzzy/fuzzy_base.html" />
-    <link rel="prev" title="3. Notes On Multi-View Clustering With Co-Training" href="../mvc/mvc_co_training.html" />
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="zh-CN"/>
-  </head>
-  
-  
-  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+    <link rel="prev" title="3. Notes On Multi-View Clustering With Co-Training" href="../mvc/mvc_co_training.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>导航</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="总索引"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="../fuzzy/fuzzy_base.html" title="1. Fuzzy Sets"
+             accesskey="N">下一页</a> |</li>
+        <li class="right" >
+          <a href="../mvc/mvc_co_training.html" title="3. Notes On Multi-View Clustering With Co-Training"
+             accesskey="P">上一页</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Research Basis 1.0 文档</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><span class="section-number">1. </span>如何开展研究</a></li> 
+      </ul>
+    </div>  
 
-  
-  
-  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
-  
-  <div id="pst-scroll-pixel-helper"></div>
-  
-  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
-    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
-
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
-<form class="bd-search d-flex align-items-center"
-      action="../search.html"
-      method="get">
-  <i class="fa-solid fa-magnifying-glass"></i>
-  <input type="search"
-         class="form-control"
-         name="q"
-         id="search-input"
-         placeholder="Search..."
-         aria-label="Search..."
-         autocomplete="off"
-         autocorrect="off"
-         autocapitalize="off"
-         spellcheck="false"/>
-  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
-
-  <div class="pst-async-banner-revealer d-none">
-  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
-</div>
-
-  
-    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
-    </header>
-  
-
-  <div class="bd-container">
-    <div class="bd-container__inner bd-page-width">
-      
-      
-      
-      <div class="bd-sidebar-primary bd-sidebar">
-        
-
-  
-  <div class="sidebar-header-items sidebar-primary__section">
-    
-    
-    
-    
-  </div>
-  
-    <div class="sidebar-primary-items__start sidebar-primary__section">
-        <div class="sidebar-primary-item">
-
-  
-    
-  
-
-<a class="navbar-brand logo" href="../index.html">
-  
-  
-  
-  
-  
-  
-    <p class="title logo__title">Research Basis 1.0 文档</p>
-  
-</a></div>
-        <div class="sidebar-primary-item">
-
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="搜索" aria-label="搜索" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">搜索</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script></div>
-        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item navbar-nav active">
-        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Multi-View Clustering</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../mvc/mvc_subspace.html">1. Multi-View Subspace Clustering</a></li>
-
-<li class="toctree-l1"><a class="reference internal" href="../mvc/mvc_co_training.html">3. Notes On Multi-View Clustering With Co-Training</a></li>
-</ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Research Methods</span></p>
-<ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">1. 如何开展研究</a></li>
-</ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Fuzzy Systems</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../fuzzy/fuzzy_base.html">1. Fuzzy Sets</a></li>
-</ul>
-
-    </div>
-</nav></div>
-    </div>
-  
-  
-  <div class="sidebar-primary-items__end sidebar-primary__section">
-  </div>
-  
-  <div id="rtd-footer-container"></div>
-
-
-      </div>
-      
-      <main id="main-content" class="bd-main" role="main">
-        
-        
-
-<div class="sbt-scroll-pixel-helper"></div>
-
-          <div class="bd-content">
-            <div class="bd-article-container">
-              
-              <div class="bd-header-article d-print-none">
-<div class="header-article-items header-article__inner">
-  
-    <div class="header-article-items__start">
-      
-        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <span class="fa-solid fa-bars"></span>
-</button></div>
-      
-    </div>
-  
-  
-    <div class="header-article-items__end">
-      
-        <div class="header-article-item">
-
-<div class="article-header-buttons">
-
-
-
-
-
-<div class="dropdown dropdown-download-buttons">
-  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="下载此页面">
-    <i class="fas fa-download"></i>
-  </button>
-  <ul class="dropdown-menu">
-      
-      
-      
-      <li><a href="../_sources/methods/research_basic.md" target="_blank"
-   class="btn btn-sm btn-download-source-button dropdown-item"
-   title="下载源文件"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="btn__text-container">.md</span>
-</a>
-</li>
-      
-      
-      
-      
-      <li>
-<button onclick="window.print()"
-  class="btn btn-sm btn-download-pdf-button dropdown-item"
-  title="列印成 PDF"
-  data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
-<span class="btn__text-container">.pdf</span>
-</button>
-</li>
-      
-  </ul>
-</div>
-
-
-
-
-<button onclick="toggleFullScreen()"
-  class="btn btn-sm btn-fullscreen-button"
-  title="全屏模式"
-  data-bs-placement="bottom" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fas fa-expand"></i>
-  </span>
-
-</button>
-
-
-
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script>
-
-
-<script>
-document.write(`
-  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="搜索" aria-label="搜索" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-  </button>
-`);
-</script>
-<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="fa-solid fa-list"></span>
-</button>
-</div></div>
-      
-    </div>
-  
-</div>
-</div>
-              
-              
-
-<div id="jb-print-docs-body" class="onlyprint">
-    <h1>如何开展研究</h1>
-    <!-- Table of contents -->
-    <div id="print-main-content">
-        <div id="jb-print-toc">
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
             
-            <div>
-                <h2> 目录 </h2>
-            </div>
-            <nav aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">1.1. 如何确定研究方向</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">1.1.1. 研究现状——资料搜集</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">1.1.2. 阅读</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">1.1.2.1. 阅读目的</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">1.1.2.2. 阅读论文</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">1.2. 如何起步</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#idea">1.3. 如何找到IDEA</a></li>
-</ul>
-            </nav>
-        </div>
-    </div>
-</div>
-
-              
-                
-<div id="searchbox"></div>
-                <article class="bd-article">
-                  
   <section class="tex2jax_ignore mathjax_ignore" id="id1">
-<h1><span class="section-number">1. </span>如何开展研究<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+<h1><span class="section-number">1. </span>如何开展研究<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h1>
 <section id="id2">
-<h2><span class="section-number">1.1. </span>如何确定研究方向<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
-<p>  一般来说要确定一个科研方向，首先从撰写一篇综述开始。综述强调的是要自已动手写。为了完成这篇综述，一般需要经历广泛搜集资料--阅读--心得3个阶段。</p>
+<h2><span class="section-number">1.1. </span>如何确定研究方向<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h2>
+<p>  一般来说要确定一个科研方向，首先从撰写一篇综述开始。综述强调的是要自已动手写。为了完成这篇综述，一般需要经历广泛搜集资料–阅读–心得3个阶段。</p>
 <section id="id3">
-<h3><span class="section-number">1.1.1. </span>研究现状——资料搜集<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">1.1.1. </span>研究现状——资料搜集<a class="headerlink" href="#id3" title="Link to this heading">¶</a></h3>
 <p>  搜集资料一般可以选择Arxiv, Web of Sciences, <strong>Google Scholar</strong>, IEEE Explore, 知网等平台，输入关键字进行查询。一般来说，应该<strong>首选Arxiv</strong>进行搜索。因为该平台除了有已发表的论文还有一些未在会议、期刊发表的论文。所以该平台可以追踪到大组最新的研究动态，对于寻找IDEA有很大的帮助。</p>
 <p>  搜集资料<strong>标准</strong>:</p>
 <ul class="simple">
@@ -348,7 +55,7 @@ document.write(`
 </ul>
 </section>
 <section id="id4">
-<h3><span class="section-number">1.1.2. </span>阅读<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">1.1.2. </span>阅读<a class="headerlink" href="#id4" title="Link to this heading">¶</a></h3>
 <p>  搜集到了感兴趣的论文，下面就要开始进行阅读阶段。阅读论文的主要目标是弄清研究现状。<strong>一般来说，阅读论文时应抓住重点，抓住main idea，不死抠细节。抠细节一般是需要重现一篇paper实验或者进行对比时，才需要精读</strong>。论文阅读篇数一般在3-5篇/week，略读结合精读。每篇论文要有至少一页的报告。内容包括：</p>
 <ul class="simple">
 <li><p><strong>main idea</strong>. 论文的动机以及解决方法。</p></li>
@@ -356,13 +63,13 @@ document.write(`
 <li><p><strong>your own idea</strong>. 对于这篇论文是否有一些自已的想法。尽量<strong>避免叠加式</strong>的想法。</p></li>
 </ul>
 <section id="id5">
-<h4><span class="section-number">1.1.2.1. </span>阅读目的<a class="headerlink" href="#id5" title="Link to this heading">#</a></h4>
+<h4><span class="section-number">1.1.2.1. </span>阅读目的<a class="headerlink" href="#id5" title="Link to this heading">¶</a></h4>
 <p>  1. <strong>了解现状</strong>. 广泛阅读的主要目的之一就是了解该方向的研究现状。通过阅读需要明确以下几个问题：该方向主要面对的是什么问题，有哪些研究分枝，经典方法是什么，最新的方法是什么，方法发展的过程和思路。</p>
 <p>  2. <strong>寻找问题</strong>. 了解现状的隐藏任务是寻找问题。一般可以从当前局限入手，寻找可以改进的方法以及所要面对的问题是否有可行性。</p>
 <p>  3. <strong>实验设置</strong>. 第3个问题则是解决如何实验。阅读过程中，注意收集论文中常用的数据集、评价指标、对比实验以及可视化等信息。</p>
 </section>
 <section id="id6">
-<h4><span class="section-number">1.1.2.2. </span>阅读论文<a class="headerlink" href="#id6" title="Link to this heading">#</a></h4>
+<h4><span class="section-number">1.1.2.2. </span>阅读论文<a class="headerlink" href="#id6" title="Link to this heading">¶</a></h4>
 <p>  1. <strong>阅读过程</strong>. 首先泛读高质量的综述论文开展，掌握研究方向的方法体系。然后确定一个具体子方向研读经典和最新论文。研读过程中注意由点到面，拓展知识面的同时，思考能否多方向交叉。</p>
 <p>  2. <strong>阅读技巧</strong></p>
 <ul class="simple">
@@ -374,14 +81,14 @@ document.write(`
 </section>
 </section>
 <section id="id7">
-<h2><span class="section-number">1.2. </span>如何起步<a class="headerlink" href="#id7" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">1.2. </span>如何起步<a class="headerlink" href="#id7" title="Link to this heading">¶</a></h2>
 <p>  起步从模仿开始。首先复现一篇经典论文，然后尝试论文方法的组合，最后通过实现分析评估。</p>
 <p>  1. <strong>复现经典论文</strong>. 熟悉代码框架，掌握常见的代码细节、常见操作、实验细节、可视化方法等。</p>
 <p>  2. <strong>论文方法组合</strong>. 将论文的创新点尝试应用到别的方法上。</p>
 <p>  3. <strong>实验分析</strong>. 分析实验结果，验证方法的有效性，寻找论文当中的问题。</p>
 </section>
 <section id="idea">
-<h2><span class="section-number">1.3. </span>如何找到IDEA<a class="headerlink" href="#idea" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">1.3. </span>如何找到IDEA<a class="headerlink" href="#idea" title="Link to this heading">¶</a></h2>
 <p>  1. <strong>模仿和应用</strong></p>
 <p>  领域内方法的组合；相似的任务，思路借鉴(如：2D到3D, 矩阵到张量等); 相关领域、技术的应用</p>
 <p>  2. <strong>创新</strong></p>
@@ -390,113 +97,82 @@ document.write(`
 </section>
 
 
-                </article>
-              
-
-              
-              
-              
-              
-                <footer class="prev-next-footer d-print-none">
-                  
-<div class="prev-next-area">
-    <a class="left-prev"
-       href="../mvc/mvc_co_training.html"
-       title="previous page">
-      <i class="fa-solid fa-angle-left"></i>
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">上一页</p>
-        <p class="prev-next-title"><span class="section-number">3. </span>Notes On Multi-View Clustering With Co-Training</p>
-      </div>
-    </a>
-    <a class="right-next"
-       href="../fuzzy/fuzzy_base.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">下一页</p>
-        <p class="prev-next-title"><span class="section-number">1. </span>Fuzzy Sets</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
-    </a>
-</div>
-                </footer>
-              
-            </div>
-            
-            
-              
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-
-  <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> 目录
-  </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">1.1. 如何确定研究方向</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">1.1.1. 研究现状——资料搜集</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">1.1.2. 阅读</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">1.1.2.1. 阅读目的</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">1.1.2.2. 阅读论文</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">1.2. 如何起步</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#idea">1.3. 如何找到IDEA</a></li>
-</ul>
-  </nav></div>
-
-</div></div>
-              
-            
+            <div class="clearer"></div>
           </div>
-          <footer class="bd-footer-content">
-            
-<div class="bd-footer-content__inner container">
-  
-  <div class="footer-item">
-    
-<p class="component-author">
-作者： SSPUIIP
-</p>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../index.html">目录</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">1. 如何开展研究</a><ul>
+<li><a class="reference internal" href="#id2">1.1. 如何确定研究方向</a><ul>
+<li><a class="reference internal" href="#id3">1.1.1. 研究现状——资料搜集</a></li>
+<li><a class="reference internal" href="#id4">1.1.2. 阅读</a><ul>
+<li><a class="reference internal" href="#id5">1.1.2.1. 阅读目的</a></li>
+<li><a class="reference internal" href="#id6">1.1.2.2. 阅读论文</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id7">1.2. 如何起步</a></li>
+<li><a class="reference internal" href="#idea">1.3. 如何找到IDEA</a></li>
+</ul>
+</li>
+</ul>
 
   </div>
-  
-  <div class="footer-item">
-    
-
-  <p class="copyright">
-    
-      © Copyright 2022, SSPUIIP.
-      <br/>
-    
-  </p>
-
+  <div>
+    <h4>上一主题</h4>
+    <p class="topless"><a href="../mvc/mvc_co_training.html"
+                          title="上一章"><span class="section-number">3. </span>Notes On Multi-View Clustering With Co-Training</a></p>
   </div>
-  
-  <div class="footer-item">
-    
+  <div>
+    <h4>下一主题</h4>
+    <p class="topless"><a href="../fuzzy/fuzzy_base.html"
+                          title="下一章"><span class="section-number">1. </span>Fuzzy Sets</a></p>
   </div>
-  
-  <div class="footer-item">
-    
-  </div>
-  
-</div>
-          </footer>
-        
-
-      </main>
+  <div role="note" aria-label="source link">
+    <h3>本页</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/methods/research_basic.md.txt"
+            rel="nofollow">显示源代码</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">快速搜索</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="提交" />
+    </form>
     </div>
-  </div>
-  
-  <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
-
-  <footer class="bd-footer">
-  </footer>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>导航</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="总索引"
+             >索引</a></li>
+        <li class="right" >
+          <a href="../fuzzy/fuzzy_base.html" title="1. Fuzzy Sets"
+             >下一页</a> |</li>
+        <li class="right" >
+          <a href="../mvc/mvc_co_training.html" title="3. Notes On Multi-View Clustering With Co-Training"
+             >上一页</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Research Basis 1.0 文档</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><span class="section-number">1. </span>如何开展研究</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; 版权所有 2022, SSPUIIP.
+      由 <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.1.3创建。
+    </div>
   </body>
 </html>
