@@ -6,3 +6,10 @@ sphinx-book-theme
 sphinx-adc-theme
 myst-parser
 sphinx-mathjax-offline
+sphinx-autobuild  
+sphinx-markdown-tables
+sphinxcontrib.mermaid
+sphinx_copybutton
+sphinx_design
+sphinx_togglebutton
+linkify-it-py
